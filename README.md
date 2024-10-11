@@ -1,1 +1,1 @@
-# soical
+# social
