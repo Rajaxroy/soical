@@ -32,7 +32,7 @@ func (app *application) createPostHandler(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	userId := 1 //temp only will change after some time.
+	userId := 1 // TODO: temp only will change after some time.
 
 	post := store.Post{
 		Title:   payload.Title,

@@ -4,14 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	"time"
 
 	"github.com/lib/pq"
-)
-
-var (
-	ErrorNotFound        = errors.New("record not found.")
-	QueryTimeoutDuration = time.Second * 5
 )
 
 type Post struct {
