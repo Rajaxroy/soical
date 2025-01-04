@@ -1,11 +1,6 @@
 package db
 
 import (
-	"context"
-	"database/sql"
-	"fmt"
-	"log"
-
 	"math/rand"
 
 	"github.com/Rajaxroy/social/internal/store"
@@ -74,49 +69,66 @@ var comments = []string{
 	"Thanks for the information, very useful.",
 }
 
-func Seed(store store.Storage, db *sql.DB) {
-	ctx := context.Background()
+// func Seed(store store.Storage, db *sql.DB) {
+// 	ctx := context.Background()
 
-	users := generateUsers(100)
+// 	users := generateUsers(100)
 
-	for _, user := range users {
-		if err := store.Users.Create(ctx, user); err != nil {
-			log.Println("Error creating user:", err)
-			return
-		}
-	}
+// 	for _, user := range users {
+// 		if err := store.Users.Create(ctx, user); err != nil {
+// 			log.Println("Error creating user:", err)
+// 			return
+// 		}
+// 	}
 
-	posts := generatePosts(200, users)
-	for _, post := range posts {
-		if err := store.Posts.Create(ctx, post); err != nil {
-			log.Println("Error creating post:", err)
-			return
-		}
-	}
+// 	posts := generatePosts(200, users)
+// 	for _, post := range posts {
+// 		if err := store.Posts.Create(ctx, post); err != nil {
+// 			log.Println("Error creating post:", err)
+// 			return
+// 		}
+// 	}
 
-	comments := generateComments(500, users, posts)
-	for _, comment := range comments {
-		if err := store.Comments.Create(ctx, comment); err != nil {
-			log.Println("Error creating comment:", err)
-			return
-		}
-	}
+// 	comments := generateComments(500, users, posts)
+// 	for _, comment := range comments {
+// 		if err := store.Comments.Create(ctx, comment); err != nil {
+// 			log.Println("Error creating comment:", err)
+// 			return
+// 		}
+// 	}
 
-	log.Println("Seeding complete")
-}
+// 	log.Println("Seeding complete")
+// }
 
-func generateUsers(num int) []*store.User {
-	users := make([]*store.User, num)
+// func generateUsers(num int) []*store.User {
+// 	hashPassword := func(password string) string {
+// 		// Implement your password hashing logic here
+// 		// For example, using bcrypt:
+// 		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+// 		if err != nil {
+// 			log.Fatal(err)
+// 		}
+// 		return string(hashedPassword)
+// 	}
+// 	users := make([]*store.User, num)
 
-	for i := 0; i < num; i++ {
-		users[i] = &store.User{
-			Username: usernames[i%len(usernames)] + fmt.Sprintf("%d", i),
-			Email:    usernames[i%len(usernames)] + fmt.Sprintf("%d", i) + "@example.com",
-			Password: "123478",
-		}
-	}
-	return users
-}
+// 	for i := 0; i < num; i++ {
+// 		users[i] = &store.User{
+// 			Username: usernames[i%len(usernames)] + fmt.Sprintf("%d", i),
+// 			Email:    usernames[i%len(usernames)] + fmt.Sprintf("%d", i) + "@example.com",
+// 			Password: hashPassword("123478"),
+// 		}
+// 	}
+
+// 	for i := 0; i < num; i++ {
+// 		users[i] = &store.User{
+// 			Username: usernames[i%len(usernames)] + fmt.Sprintf("%d", i),
+// 			Email:    usernames[i%len(usernames)] + fmt.Sprintf("%d", i) + "@example.com",
+// 			Password: store.Password("123478"),
+// 		}
+// 	}
+// 	return users
+// }
 
 func generatePosts(num int, users []*store.User) []*store.Post {
 	posts := make([]*store.Post, num)

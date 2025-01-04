@@ -4,7 +4,6 @@ import (
 	"log"
 
 	"github.com/Rajaxroy/social/internal/db"
-	"github.com/Rajaxroy/social/internal/store"
 )
 
 func main() {
@@ -16,7 +15,7 @@ func main() {
 
 	defer conn.Close()
 
-	store := store.NewStorage(conn)
+	// store := store.NewStorage(conn)
 
-	db.Seed(store, conn)
+	// db.Seed(store, conn)
 }

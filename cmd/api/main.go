@@ -1,6 +1,8 @@
 package main
 
 import (
+	"time"
+
 	"github.com/Rajaxroy/social/internal/db"
 	"github.com/Rajaxroy/social/internal/env"
 	"github.com/Rajaxroy/social/internal/store"
@@ -15,6 +17,9 @@ func main() {
 			maxOpenConns: 30,
 			maxIdleConns: 30,
 			maxIdleTime:  "15m",
+		},
+		mail: mailConfig{
+			exp: time.Hour * 24 * 3,
 		},
 	}
 
